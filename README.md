@@ -1,4 +1,4 @@
-# SistemaDeGest-oEmpresarial
+# SistemaDeGestaoEmpresarial
 Projeto destinado à disciplina de Engenharia de Software II
 
 ```markdown
