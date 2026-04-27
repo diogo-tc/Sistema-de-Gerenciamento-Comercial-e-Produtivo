@@ -6,7 +6,7 @@ Projeto destinado à disciplina de Engenharia de Software II
 
 ## Sobre o Projeto
 
-Este projeto tem como objetivo o desenvolvimento de um sistema de gerenciamento empresarial voltado para uma pequena empresa de vendas de pães artesanais. A proposta é centralizar e organizar as principais informações operacionais da empresa, facilitando o controle administrativo e produtivo.
+Este projeto tem como objetivo o desenvolvimento de um sistema de gerenciamento empresarial voltado para uma pequena empresa de produção de pães artesanais. A proposta é centralizar e organizar as principais informações operacionais da empresa, facilitando o controle administrativo e produtivo.
 
 O sistema busca oferecer ao gerente uma visão completa do funcionamento do negócio, permitindo consultas rápidas, maior controle sobre os processos internos e melhor tomada de decisões.
 
@@ -16,13 +16,14 @@ Além disso, o projeto utiliza um banco de dados relacional para armazenar, orga
 
 ## Objetivo Principal
 
-Desenvolver um software capaz de auxiliar na gestão completa da empresa, automatizando processos administrativos e reduzindo falhas causadas por controles manuais.
+Desenvolver um software para centralizar as informações da empresa com a finalidade de auxiliar na gestão completa da empresa, possibilitar a automatização de processos administrativos e reduzindo falhas causadas por controles manuais.
 
 O sistema permitirá o gerenciamento eficiente de:
 
 - Clientes
 - Unidades da empresa
 - Fornecedores
+- Faturamento
 - Estoque
 - Funcionários
 - Dependentes dos funcionários
@@ -40,7 +41,7 @@ Permite registrar informações dos clientes, como:
 - CPF/CNPJ
 - Telefone
 - Endereço
-- Histórico de compras
+- Histórico de compras (produto, data e valor)
 
 Isso facilita o relacionamento com o cliente e melhora o controle de vendas.
 
@@ -178,6 +179,7 @@ Com a implementação do sistema, espera-se:
 ## Considerações Finais
 
 Este sistema foi idealizado para atender às necessidades reais de uma pequena empresa de produção e venda de pães artesanais, oferecendo uma solução prática, eficiente e escalável.
+Como a especificação de produtos será feita de acordo com cada empresa, o sistema tem uma funcionalidade que pode ser implementada em outros nichos de mercado de produção e venda de produtos. 
 
 A informatização desses processos contribui diretamente para o crescimento sustentável do negócio, tornando a gestão mais profissional, organizada e preparada para futuras expansões.
 ```
