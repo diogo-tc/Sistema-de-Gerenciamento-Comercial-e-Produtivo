@@ -1,4 +1,4 @@
-# SistemaDeGestaoEmpresarial
+# Sistema de Gerenciamento Comercial e Produtivo
 Projeto destinado à disciplina de Engenharia de Software II
 
 ```markdown
