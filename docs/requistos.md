@@ -237,6 +237,8 @@ Como gerente, quero registrar manutenções de equipamentos para acompanhar o es
 
 # Diagrama de Casos de Uso
 
+![Imagem do Sistema](https://drive.google.com/uc?export=view&id=1krGz9636OcuDunak877-s7pfAec8dFQ1)
+
 ## Ator Principal
 - Gerente
 
