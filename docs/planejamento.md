@@ -15,6 +15,14 @@ O sistema será desenvolvido como uma aplicação web voltada para uso do gerent
 
 ---
 
+# Quadro Kanban
+
+O acompanhamento das atividades, organização das tarefas e evolução das sprints será realizado através do quadro Kanban disponível no GitHub:
+
+- https://github.com/users/diogo-tc/projects/4/views/1
+
+---
+
 # Tecnologias Definidas
 
 ## Back-end
