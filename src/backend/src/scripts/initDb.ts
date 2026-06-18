@@ -1,4 +1,4 @@
-﻿import { createServerConnection } from "../config/database.js";
+import { createServerConnection } from "../config/database.js";
 import { config } from "../config/env.js";
 
 async function initDatabase() {
@@ -13,6 +13,73 @@ async function initDatabase() {
       id INT AUTO_INCREMENT PRIMARY KEY,
       nome VARCHAR(100) NOT NULL UNIQUE,
       criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  await connection.query(`
+    CREATE TABLE IF NOT EXISTS clientes (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      nome VARCHAR(120) NOT NULL,
+      cpf VARCHAR(20) NOT NULL UNIQUE,
+      telefone VARCHAR(30) NOT NULL,
+      endereco VARCHAR(255),
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  await connection.query(`
+    CREATE TABLE IF NOT EXISTS fornecedores (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      nome VARCHAR(120) NOT NULL,
+      cnpj VARCHAR(20) NOT NULL UNIQUE,
+      contato VARCHAR(120) NOT NULL,
+      produtos_fornecidos VARCHAR(255),
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  await connection.query(`
+    CREATE TABLE IF NOT EXISTS unidades (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      nome VARCHAR(120) NOT NULL,
+      endereco VARCHAR(255) NOT NULL,
+      responsavel VARCHAR(120) NOT NULL,
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  await connection.query(`
+    CREATE TABLE IF NOT EXISTS funcionarios (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      nome VARCHAR(120) NOT NULL,
+      cpf VARCHAR(20) NOT NULL UNIQUE,
+      cargo VARCHAR(100) NOT NULL,
+      salario DECIMAL(10,2) NOT NULL,
+      data_admissao DATE,
+      unidade_id INT NOT NULL,
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      CONSTRAINT fk_funcionarios_unidades
+        FOREIGN KEY (unidade_id) REFERENCES unidades(id)
+    )
+  `);
+  await connection.query(`
+    CREATE TABLE IF NOT EXISTS estoque (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      nome VARCHAR(120) NOT NULL,
+      tipo VARCHAR(60) NOT NULL,
+      quantidade DECIMAL(10,2) NOT NULL DEFAULT 0,
+      quantidade_minima DECIMAL(10,2) NOT NULL DEFAULT 0,
+      validade DATE,
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  await connection.query(`
+    CREATE TABLE IF NOT EXISTS estoque_movimentacoes (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      item_id INT NOT NULL,
+      tipo ENUM('entrada', 'saida') NOT NULL,
+      quantidade DECIMAL(10,2) NOT NULL,
+      observacao VARCHAR(255),
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      CONSTRAINT fk_movimentacoes_estoque
+        FOREIGN KEY (item_id) REFERENCES estoque(id)
+        ON DELETE CASCADE
     )
   `);
   await connection.query(
