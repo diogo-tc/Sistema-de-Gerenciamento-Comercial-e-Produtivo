@@ -1,5 +1,5 @@
-import { createServerConnection } from "../config/database.js";
-import { config } from "../config/env.js";
+import { createServerConnection } from "../../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/config/database.js";
+import { config } from "../../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/config/env.js";
 
 async function initDatabase() {
   const connection = await createServerConnection();
