@@ -2,15 +2,15 @@ import express from "express";
 import cors from "cors";
 import session from "express-session";
 
-import "./types.js";
-import { config } from "./config/env.js";
-import { authRoutes } from "./routes/authRoutes.js";
-import { clientesRoutes } from "./routes/clientesRoutes.js";
-import { estoqueRoutes } from "./routes/estoqueRoutes.js";
-import { fornecedoresRoutes } from "./routes/fornecedoresRoutes.js";
-import { funcionariosRoutes } from "./routes/funcionariosRoutes.js";
-import { systemRoutes } from "./routes/systemRoutes.js";
-import { unidadesRoutes } from "./routes/unidadesRoutes.js";
+import "../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/types.js";
+import { config } from "../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/config/env.js";
+import { authRoutes } from "../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/routes/authRoutes.js";
+import { clientesRoutes } from "../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/routes/clientesRoutes.js";
+import { estoqueRoutes } from "../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/routes/estoqueRoutes.js";
+import { fornecedoresRoutes } from "../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/routes/fornecedoresRoutes.js";
+import { funcionariosRoutes } from "../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/routes/funcionariosRoutes.js";
+import { systemRoutes } from "../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/routes/systemRoutes.js";
+import { unidadesRoutes } from "../../../../../Sistema-de-Gerenciamento-Comercial-e-Produtivo/src/backend/src/routes/unidadesRoutes.js";
 
 const app = express();
 
