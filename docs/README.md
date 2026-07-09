@@ -1,234 +1,247 @@
-# Sistema de Gerenciamento para Empresa de Pães Artesanais
+# Sistema de Gerenciamento Comercial e Produtivo
 
-## Sobre o Projeto
-Este projeto tem como objetivo o desenvolvimento de um sistema de gerenciamento empresarial voltado para pequenas empresas de produção de alimentos, com foco inicial em uma empresa de produção de pães artesanais. A proposta é centralizar e organizar as principais informações operacionais da empresa, facilitando o controle administrativo e produtivo.
+Sistema web para gerenciamento comercial e produtivo de uma empresa de producao de alimentos, com foco em paes artesanais. O projeto foi migrado para uma arquitetura em TypeScript, com backend em Node.js/Express, frontend em React e persistencia em MySQL.
 
-O sistema busca oferecer ao gerente uma visão completa do funcionamento do negócio, permitindo consultas rápidas, maior controle sobre os processos internos e melhor tomada de decisões.
+## Objetivo do sistema
 
-Além disso, o projeto utiliza um banco de dados relacional para armazenar, organizar e relacionar todas as informações importantes da empresa, garantindo maior segurança, consistência e confiabilidade dos dados.
+Centralizar os principais cadastros e operacoes administrativas da empresa, permitindo que o gerente acompanhe clientes, fornecedores, unidades, funcionarios, estoque, faturamento e manutencoes em uma unica interface web.
 
-O sistema será desenvolvido como uma aplicação web, permitindo acesso simplificado às funcionalidades administrativas por meio de navegadores, oferecendo praticidade e facilidade de utilização.
+## Tecnologias utilizadas
 
----
+- Node.js
+- TypeScript
+- Express
+- React
+- Vite
+- MySQL
+- Bootstrap via CDN
+- dotenv para configuracao por arquivo `.env`
+- express-session para controle de sessao
+- mysql2 para conexao com o banco
+- tsx para execucao dos arquivos TypeScript em desenvolvimento
+- concurrently para iniciar frontend e backend juntos
 
-# Problema que o Sistema Pretende Solucionar
+## Funcionalidades implementadas
 
-Muitas pequenas empresas do ramo alimentício ainda realizam o controle de estoque, faturamento, manutenção e cadastro de clientes de forma manual ou utilizando ferramentas pouco integradas. Isso pode gerar:
+### Autenticacao
 
-- Falhas administrativas;
-- Perda de informações;
-- Dificuldade no controle de estoque;
-- Desperdício de matéria-prima;
-- Problemas no acompanhamento financeiro;
-- Baixa produtividade operacional.
+- Login de gerente.
+- Sessao protegida no backend.
+- Bloqueio de acesso aos modulos sem autenticacao.
+- Credenciais configuradas via `.env`.
 
-O sistema proposto busca solucionar esses problemas através da informatização e automatização dos processos administrativos e produtivos, oferecendo maior organização, eficiência e segurança no gerenciamento empresarial.
+Credenciais padrao usadas no projeto:
 
----
+- Usuario: `admin`
+- Senha: `admin123`
 
-# Relação com os ODS
+### Dashboard
 
-O projeto possui relação direta com os Objetivos de Desenvolvimento Sustentável (ODS) da Organização das Nações Unidas (ONU):
+- Tela inicial apos login.
+- Exibicao dos modulos do sistema.
+- Verificacao basica de status da API e do banco.
+- Menu com paginas ja preparadas para os modulos planejados nas sprints.
 
-## ODS 8 — Trabalho Decente e Crescimento Econômico
-O sistema auxilia pequenas empresas a melhorarem sua gestão, produtividade e organização, contribuindo para o crescimento econômico sustentável.
+### Clientes
 
-## ODS 9 — Indústria, Inovação e Infraestrutura
-A proposta promove a modernização tecnológica da empresa por meio da informatização dos processos administrativos e operacionais.
+- Cadastro de clientes.
+- Listagem de clientes.
+- Edicao de clientes.
+- Remocao de clientes.
+- Dados ficticios disponiveis pelo script de seed.
 
-## ODS 12 — Consumo e Produção Responsáveis
-O controle de estoque e validade dos produtos contribui para a redução de desperdícios e melhor utilização dos recursos produtivos.
+### Fornecedores
 
----
+- Cadastro de fornecedores.
+- Listagem de fornecedores.
+- Edicao de fornecedores.
+- Remocao de fornecedores.
+- Associacao com dados comerciais como contato, CNPJ e observacoes.
 
-## Objetivo Principal
-Desenvolver um software para centralizar as informações da empresa com a finalidade de auxiliar na gestão completa da empresa, possibilitando a automatização de processos administrativos e reduzindo falhas causadas por controles manuais.
+### Unidades
 
-O sistema permitirá o gerenciamento eficiente de:
+- Cadastro de unidades da empresa.
+- Listagem de unidades.
+- Edicao de unidades.
+- Remocao de unidades.
+- Uso das unidades como referencia para funcionarios, faturamentos e estoque.
+
+### Funcionarios
+
+- Cadastro de funcionarios.
+- Vinculo obrigatorio com uma unidade.
+- Listagem, edicao e remocao.
+- Controle de cargo, contato e situacao.
+
+### Estoque
+
+- Cadastro de produtos e insumos.
+- Controle de quantidade disponivel.
+- Registro de entrada e saida.
+- Bloqueio de saida quando a quantidade solicitada deixaria o estoque negativo.
+- Historico de movimentacoes.
+
+### Faturamento
+
+- Registro de faturamentos por unidade.
+- Controle de data, valor e descricao.
+- Listagem dos lancamentos cadastrados.
+
+### Manutencao
+
+- Cadastro de equipamentos.
+- Registro de manutencoes.
+- Associacao de manutencoes com equipamentos.
+- Controle de data, custo, status e descricao.
+
+### Dados ficticios
+
+Foi criado um script automatico para popular o banco com dados ficticios de demonstracao, incluindo:
 
 - Clientes
-- Unidades da empresa
 - Fornecedores
-- Faturamento
-- Estoque
-- Funcionários
-- Dependentes dos funcionários
-- Manutenção de máquinas e equipamentos
-
----
-
-# Público-Alvo
-
-O sistema é destinado a donos e gestores de empresas de produção de alimentos em geral, especialmente pequenos e médios negócios que necessitam melhorar o controle administrativo, operacional e financeiro de suas atividades.
-
----
-
-## Funcionalidades do Sistema
-
-### Cadastro e Consulta de Clientes
-Permite registrar informações dos clientes, como:
-
-- Nome
-- CPF/CNPJ
-- Telefone
-- Endereço
-- Histórico de compras (produto, data e valor)
-
-Isso facilita o relacionamento com o cliente e melhora o controle de vendas.
-
----
-
-### Controle de Unidades
-Caso a empresa possua mais de uma unidade (filial ou ponto de venda), o sistema permitirá:
-
-- Cadastro de unidades
-- Endereço de cada unidade
-- Responsável pela unidade
-- Controle individual de estoque
-- Distribuição de produtos
-
----
-
-### Gestão de Fornecedores
-Responsável pelo controle dos parceiros que fornecem matéria-prima, como:
-
-- Farinha
-- Fermento
-- Embalagens
+- Unidades
+- Funcionarios
+- Produtos e insumos em estoque
+- Movimentacoes de estoque
+- Faturamentos
 - Equipamentos
-- Ingredientes diversos
+- Manutencoes
 
-Informações armazenadas:
+## Estrutura principal do projeto
 
-- Nome da empresa
-- CNPJ
-- Contato
-- Produtos fornecidos
-- Histórico de compras
+```text
+src/
+  backend/
+    src/
+      config/
+      middlewares/
+      routes/
+      scripts/
+      services/
+      server.ts
+    package.json
+    tsconfig.json
+  frontend/
+    src/
+      pages/
+      services/
+      App.tsx
+      main.tsx
+      styles.css
+    package.json
+    tsconfig.json
+    vite.config.ts
+  .env
+  .env.example
+  .gitignore
+  API.md
+  README.md
+  README_DESENVOLVIMENTO.md
+  TESTES.md
+  instrucoes.md
+  package.json
+  schema.sql
+```
 
----
+## Principais arquivos
 
-### Controle de Estoque
-Permite acompanhar entradas e saídas de produtos e insumos:
+- `package.json`: comandos gerais para instalar, rodar e compilar o projeto completo.
+- `.env`: credenciais e configuracoes locais do banco e da aplicacao.
+- `.env.example`: modelo das variaveis de ambiente que devem existir localmente.
+- `schema.sql`: estrutura das tabelas do MySQL.
+- `backend/src/server.ts`: ponto de entrada da API Express.
+- `backend/src/config/env.ts`: leitura das configuracoes do `.env`.
+- `backend/src/config/database.ts`: conexao com o MySQL.
+- `backend/src/routes/`: rotas da API separadas por modulo.
+- `backend/src/scripts/initDb.ts`: cria a estrutura inicial do banco.
+- `backend/src/scripts/seedDb.ts`: popula o banco com dados ficticios.
+- `backend/src/scripts/testDb.ts`: testa a conexao com o banco.
+- `frontend/src/App.tsx`: estrutura principal da aplicacao React.
+- `frontend/src/pages/`: telas do sistema.
+- `frontend/src/services/api.ts`: comunicacao do frontend com a API.
+- `instrucoes.md`: passo a passo direto para rodar o projeto no WSL.
+- `README_DESENVOLVIMENTO.md`: guia tecnico para manutencao e continuidade do projeto.
+- `API.md`: resumo das rotas disponiveis.
+- `TESTES.md`: checklist de testes manuais e tecnicos.
 
-- Matéria-prima disponível
-- Produtos finalizados
-- Controle de validade
-- Quantidade mínima de segurança
-- Alertas de reposição
+## Como rodar rapidamente pelo WSL
 
-Essa funcionalidade ajuda a evitar desperdícios e falta de produtos.
+Entre na pasta `src` do projeto:
 
----
+```bash
+cd /mnt/c/docsw/EngenhariaII/Sistema-de-Gerenciamento-Comercial-e-Produtivo/src
+```
 
-### Gestão de Funcionários
-Cadastro completo de colaboradores da empresa:
+Instale as dependencias:
 
-- Nome
-- CPF
-- Cargo
-- Salário
-- Data de admissão
-- Unidade de atuação
-- Jornada de trabalho
+```bash
+npm install
+npm run install:all
+```
 
-Facilitando o controle interno e administrativo.
+Configure o arquivo `.env` na pasta `src`.
 
----
+Exemplo:
 
-### Dependentes dos Funcionários
-Permite o registro de dependentes vinculados aos funcionários para fins administrativos e benefícios:
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=sua_senha_do_mysql
+DB_NAME=sistema_paes
+SESSION_SECRET=sistema-paes-secret
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin123
+CLIENT_URL=http://localhost:5173
+PORT=3000
+```
 
-- Nome do dependente
-- Grau de parentesco
-- Data de nascimento
-- Funcionário responsável
+Crie as tabelas:
 
----
+```bash
+npm run init:db --prefix backend
+```
 
-### Manutenção de Máquinas
-Controle da manutenção preventiva e corretiva de equipamentos utilizados na produção:
+Popule o banco com dados ficticios:
 
-- Fornos
-- Batedeiras
-- Fermentadoras
-- Freezers
-- Outros equipamentos
+```bash
+npm run seed:db --prefix backend
+```
 
-Informações registradas:
+Para limpar os dados de demonstracao e popular novamente:
 
-- Tipo de manutenção
-- Data da manutenção
-- Responsável técnico
-- Custo da manutenção
-- Próxima revisão prevista
+```bash
+npm run seed:db:reset --prefix backend
+```
 
-Essa funcionalidade reduz falhas operacionais e aumenta a vida útil dos equipamentos.
+Inicie o sistema completo:
 
----
+```bash
+npm run dev
+```
 
-# Tecnologias Previstas
+Acesse:
 
-## Back-end
-- Python
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:3000`
 
-## Front-end
-- HTML
-- CSS
-- JavaScript
+## Comandos uteis
 
-## Banco de Dados
-- MySQL
+```bash
+npm install
+npm run install:all
+npm run dev
+npm run build --prefix backend
+npm run build --prefix frontend
+npm run init:db --prefix backend
+npm run seed:db --prefix backend
+npm run seed:db:reset --prefix backend
+npm run test:db --prefix backend
+```
 
-## Controle de Versão
-- GitHub
+## Status da entrega
 
----
+O sistema ja possui a base completa em TypeScript com React, Express e MySQL. As funcionalidades implementadas cobrem autenticacao, dashboard, clientes, fornecedores, unidades, funcionarios, estoque, faturamento e manutencao. Tambem foram criados scripts de banco, seed com dados ficticios, documentacao de API, checklist de testes e instrucoes de execucao.
 
-## Banco de Dados
-O sistema será baseado em um banco de dados relacional, responsável por armazenar todas as entidades e seus relacionamentos.
-
-### Principais Entidades
-
-- Cliente
-- Unidade
-- Fornecedor
-- Estoque
-- Funcionário
-- Dependente
-- Máquina
-- Manutenção
-
-O banco de dados permitirá integridade das informações e consultas eficientes para geração de relatórios e apoio à gestão.
-
----
-
-## Benefícios Esperados
-Com a implementação do sistema, espera-se:
-
-- Redução de erros manuais
-- Melhor controle administrativo
-- Organização das informações empresariais
-- Aumento da produtividade
-- Maior eficiência operacional
-- Melhor acompanhamento financeiro e produtivo
-- Apoio na tomada de decisões estratégicas
-
----
-
-## Considerações Finais
-Este sistema foi idealizado para atender às necessidades reais de pequenas empresas de produção de alimentos, oferecendo uma solução prática, eficiente e escalável.
-
-Como a especificação de produtos será feita de acordo com cada empresa, o sistema possui uma estrutura flexível que pode ser adaptada para diferentes nichos de mercado relacionados à produção e venda de alimentos.
-
-A informatização desses processos contribui diretamente para o crescimento sustentável do negócio, tornando a gestão mais profissional, organizada e preparada para futuras expansões.
-
----
-
-# Integrantes
-
-- Diogo Campos
-- Brenda Gabrielle
-- Pedro Henrique Gomes
-- Thiago Henrique
-- Wendel Cauã
+As proximas melhorias naturais seriam adicionar validacoes mais avancadas, filtros, relatorios, controle de permissoes por perfil, testes automatizados e refinamentos visuais.
