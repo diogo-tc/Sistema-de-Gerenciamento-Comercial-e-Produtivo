@@ -82,6 +82,43 @@ async function initDatabase() {
         ON DELETE CASCADE
     )
   `);
+  await connection.query(`
+    CREATE TABLE IF NOT EXISTS faturamentos (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      descricao VARCHAR(160) NOT NULL,
+      valor DECIMAL(10,2) NOT NULL,
+      data_faturamento DATE NOT NULL,
+      forma_pagamento VARCHAR(80) NOT NULL,
+      observacao VARCHAR(255),
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  await connection.query(`
+    CREATE TABLE IF NOT EXISTS equipamentos (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      nome VARCHAR(120) NOT NULL,
+      tipo VARCHAR(80) NOT NULL,
+      descricao VARCHAR(255),
+      status VARCHAR(60) NOT NULL,
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  await connection.query(`
+    CREATE TABLE IF NOT EXISTS manutencoes (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      equipamento_id INT NOT NULL,
+      tipo VARCHAR(80) NOT NULL,
+      data_manutencao DATE NOT NULL,
+      responsavel_tecnico VARCHAR(120) NOT NULL,
+      custo DECIMAL(10,2) NOT NULL DEFAULT 0,
+      proxima_revisao DATE,
+      observacao VARCHAR(255),
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      CONSTRAINT fk_manutencoes_equipamentos
+        FOREIGN KEY (equipamento_id) REFERENCES equipamentos(id)
+        ON DELETE CASCADE
+    )
+  `);
   await connection.query(
     "INSERT IGNORE INTO sistema_info (nome) VALUES (?)",
     ["Sistema de Gerenciamento Comercial e Produtivo"]
