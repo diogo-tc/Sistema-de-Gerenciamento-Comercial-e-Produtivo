@@ -88,6 +88,45 @@ export type MovimentacaoInput = {
   observacao: string | null;
 };
 
+export type Faturamento = {
+  id: number;
+  descricao: string;
+  valor: number;
+  data_faturamento: string;
+  forma_pagamento: string;
+  observacao: string | null;
+};
+
+export type FaturamentoInput = Omit<Faturamento, "id" | "valor"> & {
+  valor: number | string;
+};
+
+export type Equipamento = {
+  id: number;
+  nome: string;
+  tipo: string;
+  descricao: string | null;
+  status: string;
+};
+
+export type EquipamentoInput = Omit<Equipamento, "id">;
+
+export type Manutencao = {
+  id: number;
+  equipamento_id: number;
+  equipamento_nome: string;
+  tipo: string;
+  data_manutencao: string;
+  responsavel_tecnico: string;
+  custo: number;
+  proxima_revisao: string | null;
+  observacao: string | null;
+};
+
+export type ManutencaoInput = Omit<Manutencao, "id" | "equipamento_nome" | "custo"> & {
+  custo: number | string;
+};
+
 const API_URL = "http://localhost:3000/api";
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
@@ -193,5 +232,47 @@ export const api = {
         method: "POST",
         body: JSON.stringify(movimentacao)
       })
+  },
+  faturamento: {
+    list: () => request<{ faturamentos: Faturamento[] }>("/faturamento"),
+    create: (faturamento: FaturamentoInput) =>
+      request<{ message: string; id: number }>("/faturamento", {
+        method: "POST",
+        body: JSON.stringify(faturamento)
+      }),
+    update: (id: number, faturamento: FaturamentoInput) =>
+      request<{ message: string }>(`/faturamento/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(faturamento)
+      }),
+    remove: (id: number) => request<{ message: string }>(`/faturamento/${id}`, { method: "DELETE" })
+  },
+  manutencao: {
+    equipamentos: () => request<{ equipamentos: Equipamento[] }>("/manutencao/equipamentos"),
+    createEquipamento: (equipamento: EquipamentoInput) =>
+      request<{ message: string; id: number }>("/manutencao/equipamentos", {
+        method: "POST",
+        body: JSON.stringify(equipamento)
+      }),
+    updateEquipamento: (id: number, equipamento: EquipamentoInput) =>
+      request<{ message: string }>(`/manutencao/equipamentos/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(equipamento)
+      }),
+    removeEquipamento: (id: number) =>
+      request<{ message: string }>(`/manutencao/equipamentos/${id}`, { method: "DELETE" }),
+    manutencoes: () => request<{ manutencoes: Manutencao[] }>("/manutencao/manutencoes"),
+    createManutencao: (manutencao: ManutencaoInput) =>
+      request<{ message: string; id: number }>("/manutencao/manutencoes", {
+        method: "POST",
+        body: JSON.stringify(manutencao)
+      }),
+    updateManutencao: (id: number, manutencao: ManutencaoInput) =>
+      request<{ message: string }>(`/manutencao/manutencoes/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(manutencao)
+      }),
+    removeManutencao: (id: number) =>
+      request<{ message: string }>(`/manutencao/manutencoes/${id}`, { method: "DELETE" })
   }
 };

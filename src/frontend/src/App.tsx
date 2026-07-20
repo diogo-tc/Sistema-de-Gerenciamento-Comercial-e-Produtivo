@@ -1,10 +1,17 @@
-﻿import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 import { api, ModuleInfo } from "./services/api";
+import { ClientesPage } from "./pages/ClientesPage";
 import { DashboardPage } from "./pages/DashboardPage";
+import { EstoquePage } from "./pages/EstoquePage";
+import { FaturamentoPage } from "./pages/FaturamentoPage";
+import { FornecedoresPage } from "./pages/FornecedoresPage";
+import { FuncionariosPage } from "./pages/FuncionariosPage";
 import { LoginPage } from "./pages/LoginPage";
+import { ManutencaoPage } from "./pages/ManutencaoPage";
 import { ModulePage } from "./pages/ModulePage";
+import { UnidadesPage } from "./pages/UnidadesPage";
 
 type ProtectedProps = {
   authenticated: boolean;
@@ -97,6 +104,76 @@ export function App() {
           <ProtectedRoute authenticated={authenticated}>
             <AppLayout onLogout={handleLogout}>
               <DashboardPage />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/modulos/clientes"
+        element={
+          <ProtectedRoute authenticated={authenticated}>
+            <AppLayout onLogout={handleLogout}>
+              <ClientesPage />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/modulos/fornecedores"
+        element={
+          <ProtectedRoute authenticated={authenticated}>
+            <AppLayout onLogout={handleLogout}>
+              <FornecedoresPage />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/modulos/estoque"
+        element={
+          <ProtectedRoute authenticated={authenticated}>
+            <AppLayout onLogout={handleLogout}>
+              <EstoquePage />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/modulos/funcionarios"
+        element={
+          <ProtectedRoute authenticated={authenticated}>
+            <AppLayout onLogout={handleLogout}>
+              <FuncionariosPage />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/modulos/unidades"
+        element={
+          <ProtectedRoute authenticated={authenticated}>
+            <AppLayout onLogout={handleLogout}>
+              <UnidadesPage />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/modulos/faturamento"
+        element={
+          <ProtectedRoute authenticated={authenticated}>
+            <AppLayout onLogout={handleLogout}>
+              <FaturamentoPage />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/modulos/manutencao"
+        element={
+          <ProtectedRoute authenticated={authenticated}>
+            <AppLayout onLogout={handleLogout}>
+              <ManutencaoPage />
             </AppLayout>
           </ProtectedRoute>
         }

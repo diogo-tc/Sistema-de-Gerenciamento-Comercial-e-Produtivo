@@ -229,6 +229,10 @@ Rode na pasta `src`:
 npm run install:all
 ```
 
+### Erro de parse em `package.json`
+
+Pode acontecer quando o arquivo foi salvo com codificacao inadequada. Os arquivos atuais devem ficar em UTF-8 sem BOM.
+
 ## Checklist antes de entregar
 
 - Rodar `npm run install:all` em ambiente limpo.
@@ -243,3 +247,25 @@ npm run install:all
 - Testar bloqueio de estoque negativo.
 - Conferir se o frontend abre em `http://localhost:5173`.
 
+## Organizacao para proximas sprints
+
+As proximas evolucoes devem seguir a estrutura atual:
+
+- Criar ou ajustar tabela no `schema.sql`.
+- Atualizar `initDb.ts` se a estrutura do banco mudar.
+- Criar rota no backend dentro de `backend/src/routes`.
+- Registrar a rota em `backend/src/server.ts`.
+- Criar funcoes de API em `frontend/src/services/api.ts`.
+- Criar ou atualizar pagina em `frontend/src/pages`.
+- Atualizar o menu/modulos quando necessario.
+- Atualizar `API.md`, `TESTES.md`, `README.md` e este README de desenvolvimento.
+
+## Arquivos que nao devem ir para o GitHub
+
+- `.env`
+- `node_modules/`
+- `dist/`
+- arquivos temporarios do sistema operacional
+- logs locais
+
+O `.env.example` deve ir para o GitHub, pois ele documenta quais variaveis o projeto precisa sem expor credenciais reais.

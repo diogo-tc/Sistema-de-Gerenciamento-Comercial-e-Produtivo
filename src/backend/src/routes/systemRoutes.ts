@@ -16,8 +16,8 @@ systemRoutes.get("/dashboard", requireAuth, async (_request, response) => {
   response.json({
     database,
     totalModules: modules.length,
-    sprint: "Sprint 2",
-    scope: "Login, sessao, rotas protegidas, React, Express e integracao inicial com MySQL."
+    sprint: "Sprint 6",
+    scope: "Sistema integrado com CRUDs principais, faturamento, manutencao, validacoes e documentacao final."
   });
 });
 
